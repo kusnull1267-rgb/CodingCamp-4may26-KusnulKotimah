@@ -1,0 +1,463 @@
+/* ── 1. Reset / base ──────────────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── 2. Typography ────────────────────────────────────────────────────────── */
+
+:root {
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-size-base: 16px;
+  --line-height-base: 1.5;
+
+  /* Colour palette */
+  --color-bg:           #f0f2f5;
+  --color-surface:      #ffffff;
+  --color-border:       #d1d5db;
+  --color-text:         #1a1a2e;
+  --color-text-muted:   #6b7280;
+  --color-accent:       #4f46e5;
+  --color-accent-hover: #4338ca;
+  --color-danger:       #dc2626;
+  --color-danger-hover: #b91c1c;
+  --color-success:      #16a34a;
+  --color-btn-bg:       #e5e7eb;
+  --color-btn-hover:    #d1d5db;
+
+  /* Spacing */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  padding: var(--space-lg);
+}
+
+h1, h2, h3 {
+  line-height: 1.2;
+}
+
+/* ── 3. Layout — dashboard grid ───────────────────────────────────────────── */
+
+#dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: var(--space-lg);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Each panel shares a common card appearance */
+#dashboard > section {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* ── 4. Greeting Panel ────────────────────────────────────────────────────── */
+
+#greeting-panel {
+  /* Accent left border to distinguish this panel */
+  border-left: 4px solid var(--color-accent);
+}
+
+#greeting-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  letter-spacing: 0.01em;
+}
+
+#clock-display {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+#date-display {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+/* ── 5. Focus Timer ───────────────────────────────────────────────────────── */
+
+#focus-timer {
+  border-left: 4px solid #0891b2; /* teal accent */
+  align-items: center;
+  text-align: center;
+}
+
+#timer-display {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-text);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+#timer-controls {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#timer-controls button {
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-btn-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+#timer-controls button:hover {
+  background-color: var(--color-btn-hover);
+  border-color: #9ca3af;
+}
+
+#timer-start:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #ffffff;
+}
+
+#timer-stop:hover {
+  background-color: var(--color-danger);
+  border-color: var(--color-danger);
+  color: #ffffff;
+}
+
+#timer-reset:hover {
+  background-color: var(--color-btn-hover);
+  border-color: #9ca3af;
+  color: var(--color-text);
+}
+
+/* ── 6. Task Manager ──────────────────────────────────────────────────────── */
+
+#task-manager {
+  border-left: 4px solid #d97706; /* amber accent */
+  grid-column: 1 / 2;
+}
+
+#task-input-row {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+#task-input {
+  flex: 1;
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+#task-input:focus {
+  border-color: var(--color-accent);
+}
+
+#task-add-btn {
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-accent);
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
+}
+
+#task-add-btn:hover {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+#task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  overflow-y: auto;
+  max-height: 320px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg);
+  transition: background-color 0.1s ease;
+}
+
+.task-item:hover {
+  background-color: #f9fafb;
+}
+
+.task-text {
+  flex: 1;
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+/* Completed task visual distinction */
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+
+/* Task action buttons (toggle, edit, delete) */
+.task-toggle,
+.task-edit-btn,
+.task-delete-btn {
+  flex-shrink: 0;
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  line-height: 1;
+}
+
+.task-toggle:hover {
+  background-color: var(--color-success);
+  border-color: var(--color-success);
+  color: #ffffff;
+}
+
+.task-item.completed .task-toggle:hover {
+  background-color: var(--color-text-muted);
+  border-color: var(--color-text-muted);
+  color: #ffffff;
+}
+
+.task-edit-btn:hover {
+  background-color: #0891b2;
+  border-color: #0891b2;
+  color: #ffffff;
+}
+
+.task-delete-btn:hover {
+  background-color: var(--color-danger);
+  border-color: var(--color-danger);
+  color: #ffffff;
+}
+
+/* Edit mode elements */
+.task-edit-input {
+  flex: 1;
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  outline: none;
+}
+
+.task-edit-confirm,
+.task-edit-cancel {
+  flex-shrink: 0;
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  line-height: 1;
+}
+
+.task-edit-confirm {
+  border: 1px solid var(--color-success);
+  background-color: var(--color-success);
+  color: #ffffff;
+}
+
+.task-edit-confirm:hover {
+  background-color: #15803d;
+  border-color: #15803d;
+}
+
+.task-edit-cancel {
+  border: 1px solid var(--color-border);
+  background-color: var(--color-btn-bg);
+  color: var(--color-text);
+}
+
+.task-edit-cancel:hover {
+  background-color: var(--color-btn-hover);
+  border-color: #9ca3af;
+}
+
+/* ── 7. Quick Links Panel ─────────────────────────────────────────────────── */
+
+#quick-links-panel {
+  border-left: 4px solid var(--color-success); /* green accent */
+}
+
+#link-input-row {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+#link-label-input,
+#link-url-input {
+  flex: 1;
+  min-width: 80px;
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+#link-label-input:focus,
+#link-url-input:focus {
+  border-color: var(--color-accent);
+}
+
+#link-add-btn {
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid var(--color-success);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-success);
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
+}
+
+#link-add-btn:hover {
+  background-color: #15803d;
+  border-color: #15803d;
+}
+
+#quick-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  overflow-y: auto;
+  max-height: 320px;
+}
+
+.quick-link-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg);
+  transition: background-color 0.1s ease;
+}
+
+.quick-link-item:hover {
+  background-color: #f9fafb;
+}
+
+.quick-link-btn {
+  flex: 1;
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-accent);
+  color: #ffffff;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  word-break: break-word;
+}
+
+.quick-link-btn:hover {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+.quick-link-delete {
+  flex-shrink: 0;
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  line-height: 1;
+}
+
+.quick-link-delete:hover {
+  background-color: var(--color-danger);
+  border-color: var(--color-danger);
+  color: #ffffff;
+}
+
+/* ── 8. Utilities / states ────────────────────────────────────────────────── */
+
+/* Focus ring for keyboard accessibility */
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Placeholder text colour */
+::placeholder {
+  color: var(--color-text-muted);
+  opacity: 1;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do Life Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div id="dashboard">
+
+      <section id="greeting-panel">
+        <p id="greeting-text"></p>
+        <p id="clock-display"></p>
+        <p id="date-display"></p>
+      </section>
+
+      <section id="focus-timer">
+        <p id="timer-display"></p>
+        <div id="timer-controls">
+          <button id="timer-start" type="button">Start</button>
+          <button id="timer-stop" type="button">Stop</button>
+          <button id="timer-reset" type="button">Reset</button>
+        </div>
+      </section>
+
+      <section id="task-manager">
+        <div id="task-input-row">
+          <input id="task-input" type="text" placeholder="New task…">
+          <button id="task-add-btn" type="button">Add</button>
+        </div>
+        <ul id="task-list"></ul>
+      </section>
+
+      <section id="quick-links-panel">
+        <div id="link-input-row">
+          <input id="link-label-input" type="text" placeholder="Label">
+          <input id="link-url-input" type="url" placeholder="https://…">
+          <button id="link-add-btn" type="button">Add</button>
+        </div>
+        <div id="quick-links-list"></div>
+      </section>
+
+    </div>
+    <script src="js/app.js" defer></script>
+  </body>
+</html>
